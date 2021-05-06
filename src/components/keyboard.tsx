@@ -1,56 +1,48 @@
 import React from 'react'
 import style from '../styles/keyboard.module.css'
+import Frequency from '../constants/frequency'
 
-type oneOctaveProps = {
-  octave: number
-  clickEvent: (key: string, octove: number) => any
+type KeyboardProps = {
+  scaleLabel: boolean
+  keyNum: number
+  firstKey: number | string
+  clickEvent: (frequency: number) => any
 }
-const OneOctave = (props: oneOctaveProps) => {
-  const key = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+
+const Keyboard: React.FC<KeyboardProps> = (props) => {
+  const clickEvent = (frequency: number) => props.clickEvent
+
+  const keyindex =
+    typeof props.firstKey === 'string'
+      ? Frequency.findIndex((val) => val[1] === props.firstKey)
+      : props.firstKey
+
+  const key = [...Array(props.keyNum)].map((val, index) => [
+    Frequency[index + keyindex][0],
+    Frequency[index + keyindex][1],
+  ]) as [number, string][]
+  console.log(key)
   return (
     <div className={style.keyboard}>
-      {key.map((val, index) => {
-        const keyColor = val.length === 1 ? style.white : style.black
+      {key.map(([freq, scale]) => {
+        const keyColor = scale.length === 2 ? style.white : style.black
+        console.log(scale.length === 2)
         const keyStyle = `${style.key} ${keyColor}`
         const Key = () => (
-          <div
-            className={keyStyle}
-            onClick={() => props.clickEvent(val, props.octave)}
-          >
-            {val === 'C' ? val + props.octave : val}
+          <div className={keyStyle} onClick={() => props.clickEvent(freq)}>
+            {scale.match(/C/) && scale}
           </div>
         )
         const wrapperStyle =
           keyColor === style.black ? style.blackWrapper : undefined
         return (
-          <div className={wrapperStyle} key={val + props.octave}>
+          <div className={wrapperStyle} key={scale}>
             <Key></Key>
           </div>
         )
       })}
     </div>
   )
-}
-
-type KeyboardProps = {
-  octaveNum: number
-  scaleLabel: boolean
-}
-
-const Keyboard: React.FC<Partial<KeyboardProps>> = (props) => {
-  const clickEvent = (key: string, octove: number) => {
-    console.log(key + octove)
-  }
-  return (
-    <div>
-      <OneOctave octave={4} clickEvent={clickEvent}></OneOctave>
-    </div>
-  )
-}
-
-Keyboard.defaultProps = {
-  octaveNum: 3,
-  scaleLabel: false,
 }
 
 export default Keyboard
