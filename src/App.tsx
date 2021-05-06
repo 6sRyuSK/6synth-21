@@ -5,13 +5,17 @@ import { Oscillator } from './plugins/oscillator'
 
 function App() {
   const synth = new Oscillator()
-  const clickEvent = (frequency: number) => {
-    console.log(frequency)
+  const mousedown = (frequency: number) => {
+    synth.play(frequency)
+  }
+  const mouseup = () => {
+    synth.stop()
   }
   return (
     <div className="App">
       <Keyboard
-        clickEvent={clickEvent}
+        mousedown={mousedown}
+        mouseup={mouseup}
         keyNum={17}
         firstKey={39}
         scaleLabel

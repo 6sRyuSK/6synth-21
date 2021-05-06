@@ -6,7 +6,8 @@ type KeyboardProps = {
   scaleLabel: boolean
   keyNum: number
   firstKey: number | string
-  clickEvent: (frequency: number) => any
+  mousedown: (frequency: number) => any
+  mouseup: () => any
 }
 
 const Keyboard: React.FC<KeyboardProps> = (props) => {
@@ -27,7 +28,11 @@ const Keyboard: React.FC<KeyboardProps> = (props) => {
         console.log(scale.length === 2)
         const keyStyle = `${style.key} ${keyColor}`
         const Key = () => (
-          <div className={keyStyle} onClick={() => props.clickEvent(freq)}>
+          <div
+            className={keyStyle}
+            onMouseDown={() => props.mousedown(freq)}
+            onMouseUp={() => props.mouseup()}
+          >
             {scale.match(/C/) && scale}
           </div>
         )
