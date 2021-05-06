@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import Keyboard from './components/keyboard'
+import ControlPanel from './components/controlPanel'
 import { Oscillator } from './plugins/oscillator'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   }
   return (
     <div className="App">
+      <ControlPanel></ControlPanel>
       <Keyboard
         mousedown={mousedown}
         mouseup={mouseup}
