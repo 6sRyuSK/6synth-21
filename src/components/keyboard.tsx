@@ -10,8 +10,6 @@ type KeyboardProps = {
 }
 
 const Keyboard: React.FC<KeyboardProps> = (props) => {
-  const clickEvent = (frequency: number) => props.clickEvent
-
   const keyindex =
     typeof props.firstKey === 'string'
       ? Frequency.findIndex((val) => val[1] === props.firstKey)
