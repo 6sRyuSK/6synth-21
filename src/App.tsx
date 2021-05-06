@@ -16,8 +16,8 @@ function App() {
       <Keyboard
         mousedown={mousedown}
         mouseup={mouseup}
-        keyNum={17}
-        firstKey={39}
+        keyNum={36}
+        firstKey={'C3'}
         scaleLabel
       ></Keyboard>
     </div>
