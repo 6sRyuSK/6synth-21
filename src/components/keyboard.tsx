@@ -1,4 +1,5 @@
 import React from 'react'
+import style from '../styles/keyboard.module.css'
 
 type KeyboardProps = {
   octaveNum: number
@@ -9,13 +10,23 @@ const key = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
 type oneOctaveProps = { octave: number }
 const OneOctave = (props: oneOctaveProps) => {
   return (
-    <div>
-      {key.map((val, index) => (
-        <div className={val.length === 1 ? 'white' : 'black' + 'key'}>
-          {val}
-          {index === 0 ? props.octave : '' /* if key is C, display octave */}
-        </div>
-      ))}
+    <div className={style.keyboard}>
+      {key.map((val, index) => {
+        const className = `
+        ${style.key} ${val.length === 1 ? style.white : style.black}
+        `
+        // isWhite or not
+        return val.length === 1 ? (
+          <div className={className}>
+            {val}
+            {val === 'C' && props.octave}
+          </div>
+        ) : (
+          <div className={style.blackWrapper}>
+            <div className={className}>{val}</div>
+          </div>
+        )
+      })}
     </div>
   )
 }

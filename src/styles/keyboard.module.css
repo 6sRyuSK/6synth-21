@@ -1,0 +1,43 @@
+.keyboard {
+  display: flex;
+  flex-direction: row;
+  height: 180px;
+}
+
+.key {
+  display: flex;
+  width: 30px;
+  height: 160px;
+  border: 1px black solid;
+  border-radius: 5px;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  user-select: none;
+}
+
+.white {
+  background-color: #fafafa;
+}
+
+.white:active {
+  background-color: #ddd;
+}
+
+.blackWrapper {
+  position: relative;
+}
+
+.black {
+  position: absolute;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 100px;
+  background-color: #444;
+  color: #fafafa;
+  padding: 10px;
+}
+
+.black:active {
+  background-color: #555;
+}
