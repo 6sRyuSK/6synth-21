@@ -1,34 +1,34 @@
 import React from 'react'
 import style from '../styles/keyboard.module.css'
 
-type KeyboardProps = {
-  octaveNum: number
-  scaleLabel: boolean
-}
-const key = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
-
-type oneOctaveProps = { octave: number }
+type oneOctaveProps = { octave: number; onClick?: () => {} }
 const OneOctave = (props: oneOctaveProps) => {
+  const key = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
   return (
     <div className={style.keyboard}>
       {key.map((val, index) => {
-        const className = `
-        ${style.key} ${val.length === 1 ? style.white : style.black}
-        `
-        // isWhite or not
-        return val.length === 1 ? (
-          <div className={className}>
-            {val}
-            {val === 'C' && props.octave}
+        const keyColor = val.length === 1 ? style.white : style.black
+        const keyStyle = `${style.key} ${keyColor}`
+        const Key = () => (
+          <div className={keyStyle}>
+            {val === 'C' ? val + props.octave : val}
           </div>
-        ) : (
-          <div className={style.blackWrapper}>
-            <div className={className}>{val}</div>
+        )
+        const wrapperStyle =
+          keyColor === style.black ? style.blackWrapper : undefined
+        return (
+          <div className={wrapperStyle} key={val + props.octave}>
+            <Key></Key>
           </div>
         )
       })}
     </div>
   )
+}
+
+type KeyboardProps = {
+  octaveNum: number
+  scaleLabel: boolean
 }
 
 const Keyboard: React.FC<Partial<KeyboardProps>> = (props) => {
