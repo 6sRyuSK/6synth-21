@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './App.css'
 import Keyboard from './components/keyboard'
 import ControlPanel from './components/controlPanel'
 import { Oscillator } from './plugins/oscillator'
 
+export const Synth = new Oscillator()
+
 function App() {
-  const synth = new Oscillator()
+  const synth = Synth
+
   const mousedown = (frequency: number) => {
     synth.play(frequency)
   }

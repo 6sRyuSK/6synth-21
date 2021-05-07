@@ -1,12 +1,15 @@
 import RotaryEncoder from '../atoms/rotaryEncoder'
 import styles from '../../styles/controlPanel/lfo.module.css'
+import { Synth } from '../../App'
+import { useContext } from 'react'
 
 const LFO = () => {
+  const synth = Synth
   const onWheelRate = (val: number) => {
-    console.log(val)
+    synth.changeLFORate(val)
   }
   const onWheelDepth = (val: number) => {
-    console.log(val)
+    synth.changeLFODepth(val)
   }
   return (
     <div className={styles.lfo}>
