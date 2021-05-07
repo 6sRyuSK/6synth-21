@@ -4,7 +4,7 @@ import RotaryEncoder from './atoms/rotaryEncoder'
 const ControlPanel = () => {
   return (
     <div>
-      <RotaryEncoder></RotaryEncoder>
+      <RotaryEncoder label="LFO"></RotaryEncoder>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import styles from '../../styles/atoms/rotaryEncoder.module.css'
 type props = {
   size?: number
   limit?: [number, number]
+  label: string
 }
 
 const RotaryEncoder: React.FC<props> = (props: props) => {
@@ -25,8 +26,11 @@ const RotaryEncoder: React.FC<props> = (props: props) => {
     }
   })
   return (
-    <div style={style} className={styles.rotaryEncoder}>
-      <div className={styles.dot}></div>
+    <div className={styles.wrapper}>
+      <div style={style} className={styles.rotaryEncoder} id={props.label}>
+        <div className={styles.dot}></div>
+      </div>
+      <label htmlFor={props.label}>{props.label}</label>
     </div>
   )
 }
