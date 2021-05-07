@@ -6,7 +6,7 @@ import { useContext } from 'react'
 const LFO = () => {
   const synth = Synth
   const onWheelRate = (val: number) => {
-    synth.changeLFORate(val)
+    synth.changeLFORate(val / 10)
   }
   const onWheelDepth = (val: number) => {
     synth.changeLFODepth(val)
