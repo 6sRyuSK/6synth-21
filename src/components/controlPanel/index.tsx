@@ -1,10 +1,10 @@
 import React from 'react'
-import RotaryEncoder from '../atoms/rotaryEncoder'
+import LFO from './lfo'
 
 const ControlPanel = () => {
   return (
     <div>
-      <RotaryEncoder label="LFO"></RotaryEncoder>
+      <LFO></LFO>
     </div>
   )
 }
