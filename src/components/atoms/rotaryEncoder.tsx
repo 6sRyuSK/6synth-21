@@ -13,9 +13,7 @@ const RotaryEncoder: React.FC<props> = (props: props) => {
     height: props.size + 'px',
   }
   useEffect(() => {
-    const Elm = document.getElementsByClassName(
-      styles.rotaryEncoder
-    )[0] as HTMLDivElement
+    const Elm = document.getElementById(props.label) as HTMLDivElement
     let rotate = props.limit![0]
     Elm.style.transform = `rotate(${rotate}deg)`
     Elm.onwheel = (e) => {
