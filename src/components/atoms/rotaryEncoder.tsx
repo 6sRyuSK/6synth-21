@@ -3,6 +3,7 @@ import styles from '../../styles/atoms/rotaryEncoder.module.css'
 
 type props = {
   size?: number
+  limit?: [number, number]
 }
 
 const RotaryEncoder: React.FC<props> = (props: props) => {
@@ -14,9 +15,11 @@ const RotaryEncoder: React.FC<props> = (props: props) => {
     const Elm = document.getElementsByClassName(
       styles.rotaryEncoder
     )[0] as HTMLDivElement
-    let rotate = 0
+    let rotate = props.limit![0]
+    Elm.style.transform = `rotate(${rotate}deg)`
     Elm.onwheel = (e) => {
       rotate += Math.sign(e.deltaY) * 10
+      rotate = Math.min(Math.max(props.limit![0], rotate), props.limit![1])
       console.log(rotate)
       Elm.style.transform = `rotate(${rotate}deg)`
     }
@@ -30,6 +33,7 @@ const RotaryEncoder: React.FC<props> = (props: props) => {
 
 RotaryEncoder.defaultProps = {
   size: 32,
+  limit: [-140, 140],
 }
 
 export default RotaryEncoder
