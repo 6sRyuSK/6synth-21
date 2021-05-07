@@ -5,6 +5,7 @@ type props = {
   size?: number
   limit?: [number, number]
   label: string
+  wheelEvent: (value: number) => any
 }
 
 const RotaryEncoder: React.FC<props> = (props: props) => {
@@ -19,8 +20,8 @@ const RotaryEncoder: React.FC<props> = (props: props) => {
     Elm.onwheel = (e) => {
       rotate += Math.sign(e.deltaY) * 10
       rotate = Math.min(Math.max(props.limit![0], rotate), props.limit![1])
-      console.log(rotate)
       Elm.style.transform = `rotate(${rotate}deg)`
+      props.wheelEvent(rotate - props.limit![0])
     }
   })
   return (
