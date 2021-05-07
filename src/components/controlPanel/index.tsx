@@ -1,5 +1,5 @@
 import React from 'react'
-import RotaryEncoder from './atoms/rotaryEncoder'
+import RotaryEncoder from '../atoms/rotaryEncoder'
 
 const ControlPanel = () => {
   return (
